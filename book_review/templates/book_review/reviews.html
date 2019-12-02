@@ -1,0 +1,40 @@
+{% extends 'book_review/base.html' %}
+{% block content %}
+
+<h2>Search results for "{{ author }}"</h2>
+
+{% for review in reviews %}
+
+<div class="review">
+
+    <h3>
+        <span class="book-author">{{ review.book_author }}</span> 
+        by 
+        <span class="book-author">{{ review.book_author }}</span>
+    </h3> 
+    
+    {% if review.byline %}
+        <p>Reviewed by {{ review.byline }}</p>
+    {% endif %}
+
+    {% if review.summary %}
+        <p>{{ review.summary }}</p>
+    {% endif %}
+
+    {% if review.publication_dt %}
+        <p>Published on {{ review.publication_dt }}</p>
+    {% endif %}
+
+    <a href={{review.url}}>Read full review</a>
+
+</div>
+
+{% empty %}
+
+<p>Sorry, no reviews found for {{ author }}.</p>
+
+{% endfor %}
+
+<a href={% url 'search' %}>Search again?</a>
+
+{% endblock %}

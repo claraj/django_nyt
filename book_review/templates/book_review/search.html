@@ -1,0 +1,26 @@
+{% extends 'book_review/base.html' %}
+{% block content %}
+
+<h2>Search for book reviews by author</h2>
+
+{% if messages %}
+
+    <!-- Error messages from server -->
+
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+
+{% endif %}
+
+
+<form action="/" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Search">
+</form>
+
+
+{% endblock %}
